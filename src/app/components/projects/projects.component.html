@@ -1,0 +1,69 @@
+<section id="projects" class="section">
+  <div class="container">
+    <h2 class="section-title aos-hidden">Mis <span>Proyectos</span></h2>
+    <div class="section-divider aos-hidden"></div>
+
+    <div class="filters aos-hidden">
+      <button *ngFor="let f of filters" class="filter-btn" [class.active]="filter === f" (click)="setFilter(f)">
+        {{ f === 'all' ? 'Todos' : f }}
+      </button>
+    </div>
+
+    <!-- Projects Carousel -->
+    <div class="projects-carousel-container aos-hidden">
+      <p-carousel [value]="filteredProjects" [numVisible]="3" [numScroll]="1" [circular]="true"
+        [autoplayInterval]="4000" [showIndicators]="true" [responsiveOptions]="responsiveOptions">
+        <ng-template let-project pTemplate="item">
+          <div class="project-card glass-card">
+            <!-- Image -->
+            <div class="project-image">
+              <img [src]="project.image" [alt]="project.name" loading="lazy">
+              <div class="project-overlay">
+                <div class="overlay-links">
+                  <a [href]="project.demoUrl" class="overlay-btn" target="_blank">
+                    <i class="fa fa-external-link-alt"></i> {{ langService.t['PROJECTS']['DEMO'] }}
+                  </a>
+                  <a [href]="project.githubUrl" class="overlay-btn outline" target="_blank">
+                    <i class="fab fa-github"></i> {{ langService.t['PROJECTS']['CODE'] }}
+                  </a>
+                </div>
+              </div>
+              <span class="project-badge" [style.background]="getBadgeColor(project.badge) + '20'"
+                [style.color]="getBadgeColor(project.badge)">
+                {{ project.badge }}
+              </span>
+            </div>
+
+            <!-- Content -->
+            <div class="project-content">
+              <h3 class="project-name">{{ project.name }}</h3>
+              <p class="project-desc">{{ project.longDescription }}</p>
+
+              <div class="project-techs">
+                <span class="tech-badge" *ngFor="let t of project.technologies.slice(0, 4)">{{ t }}</span>
+                <span *ngIf="project.technologies.length > 4" class="tech-badge">+{{ project.technologies.length - 4
+                  }}</span>
+              </div>
+
+              <div class="project-links">
+                <a [href]="project.demoUrl" class="link-btn" target="_blank">
+                  <i class="fa fa-external-link-alt"></i> {{ langService.t['PROJECTS']['DEMO'] }}
+                </a>
+                <a [href]="project.githubUrl" class="link-btn ghost" target="_blank">
+                  <i class="fab fa-github"></i> {{ langService.t['PROJECTS']['CODE'] }}
+                </a>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </p-carousel>
+    </div>
+    <br>
+    <div class="projects-cta aos-hidden">
+      <a href="https://github.com/VictorDG15" target="_blank" class="btn-outline">
+        <i class="fab fa-github"></i>
+        {{ langService.t['PROJECTS']['MORE'] }}
+      </a>
+    </div>
+  </div>
+</section>

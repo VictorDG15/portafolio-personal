@@ -1,0 +1,45 @@
+<section id="education" class="section">
+  <div class="container">
+    <h2 class="section-title aos-hidden">Educación & <span>Certificaciones</span></h2>
+    <div class="section-divider aos-hidden"></div>
+
+    <div class="edu-layout">
+      <!-- Education -->
+      <div class="edu-left">
+        <h3 class="sub-heading aos-hidden"><i class="fa fa-university"></i> Educación</h3>
+        <div class="edu-card glass-card aos-hidden" *ngFor="let edu of educationList">
+          <div class="edu-icon">
+            <i class="fa" [class]="edu.icon"></i>
+          </div>
+          <div class="edu-info">
+            <h4>{{ edu.degree }}</h4>
+            <p class="edu-institution">{{ edu.institution }}</p>
+            <p class="edu-period"><i class="fa fa-calendar"></i> {{ edu.period }}</p>
+            <div class="edu-honors" *ngIf="edu.honors">
+              <i class="fa fa-star"></i>
+              {{ edu.honors }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certifications -->
+      <div class="certs-right">
+        <h3 class="sub-heading aos-hidden"><i class="fa fa-certificate"></i> Certificaciones</h3>
+        <div class="certs-grid">
+          <div class="cert-card glass-card aos-hidden" *ngFor="let cert of certifications; let i = index"
+            [style.animation-delay]="i * 0.08 + 's'">
+            <div class="cert-icon">
+              <i class="fa" [class]="cert.icon"></i>
+            </div>
+            <div class="cert-info">
+              <h5>{{ cert.title }}</h5>
+              <span class="cert-issuer">{{ cert.issuer }}</span>
+              <span class="cert-year">{{ cert.year }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

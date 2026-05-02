@@ -1,0 +1,109 @@
+<section id="experience" class="section">
+  <div class="container">
+
+    <p class="section-label">Career</p>
+    <h2 class="section-title">Experiencia <span>Profesional</span></h2>
+    <div class="section-divider"></div>
+
+    <!-- ================= DESKTOP ================= -->
+    <div class="exp-desktop">
+
+      <div class="exp-layout">
+
+        <!-- Timeline -->
+        <div class="timeline">
+          <div class="timeline-line"></div>
+          <div class="timeline-progress" [style.height.%]="progress"></div>
+
+          <div class="company-tabs">
+            <button *ngFor="let exp of experiences; let i = index" class="company-tab"
+              [class.active]="activeIndex === i" (click)="setActiveManual(i)">
+
+              <span class="timeline-node" [class.active]="activeIndex >= i"></span>
+              <span class="tab-company">{{ exp.company }}</span>
+              <span class="tab-period">{{ exp.period }}</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Detail -->
+        <div class="exp-detail glass-card">
+          <div class="exp-header">
+            <h3 class="exp-role">{{ experiences[activeIndex].role }}</h3>
+
+            <span class="exp-type-badge" [style.background]="getColor(experiences[activeIndex].type) + '20'"
+              [style.color]="getColor(experiences[activeIndex].type)">
+              {{ typeLabels[experiences[activeIndex].type] }}
+            </span>
+          </div>
+
+          <ul class="exp-bullets">
+            <li *ngFor="let point of experiences[activeIndex].description">
+              <span class="bullet-arrow">
+                <i class="fa fa-chevron-right"></i>
+              </span>
+              {{ point }}
+            </li>
+          </ul>
+
+          <div class="exp-techs">
+            <span class="tech-badge" *ngFor="let tech of experiences[activeIndex].technologies">
+              {{ tech }}
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="exp-mobile">
+
+      <div class="exp-carousel-container">
+
+        <p-carousel [value]="experiences" [page]="activeIndex" (onPage)="onPageChange($event)" [numVisible]="1"
+          [numScroll]="1" [circular]="true" [autoplayInterval]="10000" [showIndicators]="false" [showNavigators]="true">
+
+          <ng-template let-exp let-i="index" pTemplate="item">
+            <div class="company-tab glass-card" [class.active]="activeIndex === i" (click)="setActiveManual(i)">
+
+              <span class="tab-company">{{ exp.company }}</span>
+              <span class="tab-period">{{ exp.period }}</span>
+
+            </div>
+          </ng-template>
+
+        </p-carousel>
+
+      </div>
+
+      <!-- Detail -->
+      <div class="exp-detail glass-card">
+        <div class="exp-header">
+          <h3 class="exp-role">{{ experiences[activeIndex].role }}</h3>
+
+          <span class="exp-type-badge" [style.background]="getColor(experiences[activeIndex].type) + '20'"
+            [style.color]="getColor(experiences[activeIndex].type)">
+            {{ typeLabels[experiences[activeIndex].type] }}
+          </span>
+        </div>
+
+        <ul class="exp-bullets">
+          <li *ngFor="let point of experiences[activeIndex].description">
+            <span class="bullet-arrow">
+              <i class="fa fa-chevron-right"></i>
+            </span>
+            {{ point }}
+          </li>
+        </ul>
+
+        <div class="exp-techs">
+          <span class="tech-badge" *ngFor="let tech of experiences[activeIndex].technologies">
+            {{ tech }}
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,76 @@
+<section id="contact" class="section">
+  <div class="container">
+    <h2 class="section-title aos-hidden">¿Trabajamos <span>juntos?</span></h2>
+    <div class="section-divider aos-hidden"></div>
+
+    <p class="contact-intro aos-hidden">
+      Estoy disponible para proyectos freelance, posiciones full-time y colaboraciones.
+      Si tienes una idea o necesitas un desarrollador confiable, escríbeme.
+    </p>
+
+    <div class="contact-layout">
+      <form class="contact-form glass-card aos-hidden" (ngSubmit)="onSubmit()" [formGroup]="contactForm" novalidate>
+        <div class="success-msg" *ngIf="success">
+          <i class="fa fa-check-circle"></i>
+          ¡Mensaje enviado! Te responderé muy pronto.
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nombre completo</label>
+            <input type="text" formControlName="name" maxlength="80" placeholder="Tu nombre" [ngClass]="{
+                'error': (f['name'].touched || submitted) && f['name'].invalid,
+                'success': f['name'].valid && f['name'].touched
+              }">
+            <span class="error-msg" *ngIf="(f['name'].touched || submitted) && f['name'].errors">
+              Nombre es requerido (mínimo 2 caracteres)
+            </span>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" formControlName="email" maxlength="120" placeholder="tu@email.com" [ngClass]="{
+                'error': (f['email'].touched || submitted) && f['email'].invalid,
+                'success': f['email'].valid && f['email'].touched
+              }">
+            <span class="error-msg" *ngIf="(f['email'].touched || submitted) && f['email'].errors">
+              Email válido es requerido
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Asunto</label>
+          <input type="text" formControlName="subject" maxlength="120" [ngClass]="{
+              'error': (f['subject'].touched || submitted) && f['subject'].invalid,
+              'success': f['subject'].valid && f['subject'].touched
+            }">
+          <span class="error-msg" *ngIf="(f['subject'].touched || submitted) && f['subject'].errors">
+            Asunto es requerido
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label>Mensaje</label>
+          <textarea formControlName="message" rows="5" maxlength="500" placeholder="Cuéntame sobre tu proyecto..."
+            (paste)="onPasteLimit($event, 500)" [ngClass]="{
+              'error': (f['message'].touched || submitted) && f['message'].invalid,
+              'success': f['message'].valid && f['message'].touched
+            }">
+          </textarea>
+
+          <div class="char-count">
+            {{ f['message'].value?.length || 0 }}/500
+          </div>
+          <span class="error-msg" *ngIf="(f['message'].touched || submitted) && f['message'].errors">
+            El mensaje debe tener al menos 10 caracteres
+          </span>
+        </div>
+
+        <button type="submit" class="btn-primary submit-btn" [disabled]="loading">
+          <i class="fa" [class.fa-paper-plane]="!loading" [class.fa-spinner]="loading"></i>
+          {{ loading ? 'Enviando...' : 'Enviar mensaje' }}
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

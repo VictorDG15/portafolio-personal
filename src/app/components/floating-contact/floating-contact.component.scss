@@ -1,0 +1,215 @@
+:host {
+    display: contents;
+}
+
+.floating-contact-container {
+    position: fixed;
+    bottom: 45px;
+    right: 45px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.tooltip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    background: var(--bg-tertiary, #1e1e2e);
+    color: var(--text-primary, #e0e0e0);
+    padding: 10px 16px 10px 12px;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.18),
+        0 1px 4px rgba(0, 0, 0, 0.12);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+
+    opacity: 0;
+    transform: translateX(14px) scale(0.97);
+    transition:
+        opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    white-space: nowrap;
+    position: relative;
+
+    /* Visible state */
+    &.show {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        right: -6px;
+        top: 50%;
+        transform: translateY(-50%);
+        border-width: 6px 0 6px 6px;
+        border-style: solid;
+        border-color: transparent transparent transparent var(--bg-tertiary, #1e1e2e);
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        right: -7px;
+        top: 50%;
+        transform: translateY(-50%);
+        border-width: 7px 0 7px 7px;
+        border-style: solid;
+        border-color: transparent transparent transparent var(--border-color, rgba(255, 255, 255, 0.08));
+        z-index: -1;
+    }
+}
+
+.tooltip-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.07);
+    flex-shrink: 0;
+    font-size: 0.85rem;
+    color: var(--text-secondary, #a0a0b0);
+    transition: color 0.3s ease;
+}
+
+.tooltip-text {
+    max-width: 220px;
+    white-space: normal;
+    line-height: 1.35;
+}
+
+.custom-icon {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+}
+
+.floating-btn {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    color: #ffffff;
+    font-size: 1.7rem;
+    text-decoration: none;
+
+    transition:
+        transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.3s ease;
+
+    .btn-ring {
+        position: absolute;
+        inset: -4px;
+        border-radius: 50%;
+        border: 2px solid currentColor;
+        opacity: 0;
+        transform: scale(0.85);
+        transition:
+            opacity 0.3s ease,
+            transform 0.3s ease;
+        pointer-events: none;
+    }
+
+    &>i {
+        position: relative;
+        z-index: 1;
+        transition: transform 0.25s ease;
+    }
+
+    &:hover {
+        transform: scale(1.12) translateY(-2px);
+
+        .btn-ring {
+            opacity: 0.35;
+            transform: scale(1.1);
+        }
+
+        &>i {
+            transform: scale(1.08);
+        }
+    }
+
+    &:active {
+        transform: scale(1.04) translateY(0);
+    }
+
+    &.whatsapp {
+        background: #25D366;
+        box-shadow:
+            0 6px 20px rgba(37, 211, 102, 0.45),
+            0 2px 8px rgba(0, 0, 0, 0.15);
+        color: #25D366;
+
+        &>i {
+            color: #ffffff;
+        }
+
+        &:hover {
+            box-shadow:
+                0 10px 28px rgba(37, 211, 102, 0.55),
+                0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+    }
+
+    &.email {
+        background: #0078D4;
+        box-shadow:
+            0 6px 20px rgba(0, 120, 212, 0.45),
+            0 2px 8px rgba(0, 0, 0, 0.15);
+        color: #0078D4;
+
+        &>i {
+            color: #ffffff;
+        }
+
+        &:hover {
+            box-shadow:
+                0 10px 28px rgba(0, 120, 212, 0.55),
+                0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .floating-contact-container {
+        bottom: 30px;
+        right: 26px;
+    }
+
+    .tooltip {
+        display: none;
+    }
+
+    .floating-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 1.4rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .tooltip,
+    .floating-btn,
+    .btn-ring,
+    .floating-btn>i {
+        transition: none;
+    }
+}

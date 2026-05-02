@@ -1,0 +1,72 @@
+<nav class="navbar" [class.scrolled]="isScrolled">
+  <div class="nav-container">
+
+    <a class="nav-logo" href="#hero" (click)="scrollTo($event, '#hero')">
+      <span class="logo-bracket">&lt;</span>
+      <span class="logo-name">YD</span>
+      <span class="logo-bracket">/&gt;</span>
+    </a>
+
+    <ul class="nav-links">
+      <li *ngFor="let link of navLinks; let i = index">
+        <a [href]="link.href" (click)="scrollTo($event, link.href)" class="nav-link">
+          <!-- <span class="link-index">0{{i + 1}}.</span> -->
+          {{ link.label }}
+        </a>
+      </li>
+    </ul>
+
+    <div class="nav-actions">
+      <!-- Theme/Lang Toggles -->
+      <button class="nav-icon-btn" (click)="themeService.toggleTheme()" title="Cambiar Tema">
+        <i class="fa" [ngClass]="themeService.isLight ? 'fa-moon' : 'fa-sun'"></i>
+      </button>
+      <button class="nav-icon-btn lang-toggle" (click)="langService.toggleLanguage()">
+        {{ langService.currentLang === 'es' ? 'EN' : 'ES' }}
+      </button>
+
+      <!-- Contact CTA -->
+      <a href="mailto:victoryorddiazgonzales@gmail.com" class="nav-cta">
+        <i class="fa fa-envelope"></i>
+        {{ langService.t['NAVBAR']['HIRE_ME'] }}
+      </a>
+    </div>
+
+    <button class="hamburger" (click)="toggleMenu()" [class.open]="isMenuOpen">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <div class="mobile-menu" [class.open]="isMenuOpen">
+    <ul>
+      <li *ngFor="let link of navLinks; let i = index">
+        <a [href]="link.href" (click)="scrollTo($event, link.href)">
+          <span class="link-index">0{{i + 1}}.</span> {{ link.label }}
+        </a>
+      </li>
+    </ul>
+
+    <div class="mobile-actions">
+      <div class="mobile-toggles">
+        <button class="nav-icon-btn" (click)="themeService.toggleTheme()">
+          <i class="fa" [ngClass]="themeService.isLight ? 'fa-moon' : 'fa-sun'"></i>
+        </button>
+        <button class="nav-icon-btn lang-toggle" (click)="langService.toggleLanguage()">
+          {{ langService.currentLang === 'es' ? 'EN' : 'ES' }}
+        </button>
+      </div>
+
+      <a href="assets/cv/cv-yordi.pdf" target="_blank" class="btn-outline"
+        style="width:100%;justify-content:center;margin-top:16px;">
+        <i class="fa fa-download"></i> {{ langService.t['NAVBAR']['DOWNLOAD_CV'] }}
+      </a>
+
+      <a href="mailto:victoryorddiazgonzales@gmail.com" class="btn-primary"
+        style="width:100%;justify-content:center;margin-top:16px;">
+        <i class="fa fa-envelope"></i> {{ langService.t['NAVBAR']['HIRE_ME'] }}
+      </a>
+    </div>
+  </div>
+</nav>

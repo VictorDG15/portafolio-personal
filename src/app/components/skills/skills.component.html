@@ -1,0 +1,37 @@
+<section id="skills" class="section">
+  <div class="container">
+    <h2 class="section-title aos-hidden">Habilidades <span>Técnicas</span></h2>
+    <div class="section-divider aos-hidden"></div>
+
+    <div class="skills-grid">
+      <div class="skill-category glass-card aos-hidden" *ngFor="let cat of skillCategories; let ci = index"
+        [style.animation-delay]="ci * 0.15 + 's'">
+        <div class="cat-header">
+          <div class="cat-icon">
+            <i class="fa" [class]="cat.icon"></i>
+          </div>
+          <h3>{{ cat.category }}</h3>
+        </div>
+
+        <div class="skill-list">
+          <div class="skill-item" *ngFor="let skill of cat.items; let si = index">
+            <div class="skill-info">
+              <span class="skill-name">{{ skill.name }}</span>
+              <span class="skill-percent">{{ getLevel(skill.name) }}%</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-fill" [style.width.%]="getLevel(skill.name)" [style.transition-delay]="si * 0.08 + 's'">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quick-badges aos-hidden">
+      <div class="badges-row">
+        <span class="tech-badge" *ngFor="let b of extraBadges">{{ b }}</span>
+      </div>
+    </div>
+  </div>
+</section>

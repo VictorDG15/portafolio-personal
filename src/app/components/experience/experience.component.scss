@@ -1,0 +1,308 @@
+// ─────────────────────────────────────────────
+// BASE LAYOUT (DESKTOP DEFAULT)
+// ─────────────────────────────────────────────
+
+.exp-desktop {
+  display: block;
+}
+
+.exp-mobile {
+  display: none;
+}
+
+.exp-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+// ─────────────────────────────────────────────
+// TIMELINE (DESKTOP)
+// ─────────────────────────────────────────────
+
+.timeline {
+  position: relative;
+  padding-left: 30px;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 10px;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: var(--border);
+  border-radius: 2px;
+}
+
+.timeline-progress {
+  position: absolute;
+  left: 10px;
+  top: 0;
+  width: 2px;
+  height: 0;
+  background: var(--accent);
+  border-radius: 2px;
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.4);
+  transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// ─────────────────────────────────────────────
+// COMPANY TABS (DESKTOP)
+// ─────────────────────────────────────────────
+
+.company-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.company-tab {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  padding: 12px 14px 12px 25px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+
+  cursor: pointer;
+  transition: var(--transition);
+
+  .tab-company {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+  }
+
+  .tab-period {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    margin-top: 3px;
+  }
+
+  .timeline-node {
+    position: absolute;
+    left: -21px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    background: var(--bg-primary);
+
+    &.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+    }
+  }
+
+  &:hover {
+    border-color: var(--border-hover);
+
+    .tab-company {
+      color: var(--text-primary);
+    }
+  }
+
+  &.active {
+    background: rgba(0, 212, 255, 0.05);
+    border-color: rgba(0, 212, 255, 0.35);
+
+    .tab-company {
+      color: var(--accent);
+    }
+  }
+}
+
+// ─────────────────────────────────────────────
+// DETAIL CARD
+// ─────────────────────────────────────────────
+
+.exp-detail {
+  padding: 36px;
+  min-height: 420px;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(0, 212, 255, 0.3),
+        transparent);
+  }
+}
+
+.exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.exp-role {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.exp-type-badge {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+// ─────────────────────────────────────────────
+// BULLETS
+// ─────────────────────────────────────────────
+
+.exp-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 32px;
+
+  li {
+    display: flex;
+    gap: 12px;
+    font-size: 0.93rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+}
+
+.bullet-arrow i {
+  font-size: 0.65rem;
+  color: var(--accent);
+}
+
+// ─────────────────────────────────────────────
+// TECH BADGES
+// ─────────────────────────────────────────────
+
+.exp-techs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tech-badge {
+  padding: 5px 13px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+
+  &:hover {
+    background: var(--accent-dim);
+    color: var(--accent);
+  }
+}
+
+// ─────────────────────────────────────────────
+// MOBILE (CAROUSEL MODE)
+// ─────────────────────────────────────────────
+
+@media (max-width: 768px) {
+
+  .exp-desktop {
+    display: none;
+  }
+
+  .exp-mobile {
+    display: block;
+  }
+
+  .exp-carousel-container {
+    margin-bottom: 16px;
+
+    ::ng-deep .p-carousel-item {
+      padding: 0 8px;
+    }
+
+    ::ng-deep .p-carousel-prev,
+    ::ng-deep .p-carousel-next {
+      width: 32px;
+      height: 42px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--accent);
+
+      &:hover {
+        background: var(--accent-dim);
+      }
+    }
+  }
+
+  .company-tab {
+    height: 70px;
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    .tab-company {
+      font-size: 0.75rem;
+    }
+
+    .tab-period {
+      font-size: 0.6rem;
+    }
+  }
+
+  .exp-detail {
+    padding: 20px 16px;
+    min-height: auto;
+  }
+
+  .exp-header {
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .exp-role {
+    font-size: 1.1rem;
+  }
+
+  .exp-type-badge {
+    font-size: 0.65rem;
+    padding: 4px 10px;
+  }
+
+  .exp-bullets li {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .tech-badge {
+    font-size: 0.65rem;
+    padding: 4px 10px;
+  }
+}

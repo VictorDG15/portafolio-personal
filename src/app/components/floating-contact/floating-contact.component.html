@@ -1,0 +1,32 @@
+<div class="floating-contact-container" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
+
+    <div class="tooltip" [class.show]="showTooltip">
+        <span class="tooltip-icon">
+            <i class="fa" [class.fa-whatsapp]="isWhatsapp" [class.fa-envelope]="!isWhatsapp"></i>
+        </span>
+        <span class="tooltip-text">{{ currentMessage }}</span>
+    </div>
+
+    <a [href]="currentLink" target="_blank" rel="noopener noreferrer" class="floating-btn" [class.whatsapp]="isWhatsapp"
+        [class.email]="!isWhatsapp" [attr.aria-label]="isWhatsapp ? 'Contactar por WhatsApp' : 'Contactar por Email'">
+
+        <span class="btn-ring"></span>
+
+        <ng-container *ngIf="isWhatsapp; else emailIcon">
+
+            <ng-container *ngIf="!imgError; else fallbackIcon">
+                <img src="assets/whatsapp.webp" alt="WhatsApp" class="custom-icon" (error)="imgError = true" />
+            </ng-container>
+
+            <ng-template #fallbackIcon>
+                <i class="fa fa-whatsapp"></i>
+            </ng-template>
+
+        </ng-container>
+
+        <ng-template #emailIcon>
+            <i class="fa fa-envelope"></i>
+        </ng-template>
+    </a>
+
+</div>
