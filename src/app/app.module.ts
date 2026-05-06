@@ -7,6 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { TooltipModule } from 'primeng/tooltip';
 import { CarouselModule } from 'primeng/carousel';
+import { DialogModule } from 'primeng/dialog';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HeroComponent } from './components/hero/hero.component';
@@ -42,6 +43,7 @@ import { FloatingContactComponent } from './components/floating-contact/floating
     CardModule,
     TooltipModule,
     CarouselModule,
+    DialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -19,7 +19,7 @@ export class HeroComponent implements OnInit, OnDestroy {
 
   stats = [
     { value: '3+', label: 'Años exp.' },
-    // { value: '6', label: 'Empresas' },
+    { value: '3', label: 'Empresas' },
     { value: '15+', label: 'Tecnologías' },
     { value: '10+', label: 'Proyectos' },
   ];

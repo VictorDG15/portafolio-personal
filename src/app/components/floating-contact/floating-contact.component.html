@@ -1,9 +1,9 @@
 <div class="floating-contact-container" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
 
     <div class="tooltip" [class.show]="showTooltip">
-        <span class="tooltip-icon">
-            <i class="fa" [class.fa-whatsapp]="isWhatsapp" [class.fa-envelope]="!isWhatsapp"></i>
-        </span>
+        <!-- <span class="tooltip-icon">
+            <i [ngClass]="isWhatsapp ? 'fab fa-whatsapp' : 'fa fa-envelope'"></i>
+        </span> -->
         <span class="tooltip-text">{{ currentMessage }}</span>
     </div>
 
@@ -19,7 +19,7 @@
             </ng-container>
 
             <ng-template #fallbackIcon>
-                <i class="fa fa-whatsapp"></i>
+                <i class="fab fa-whatsapp"></i>
             </ng-template>
 
         </ng-container>

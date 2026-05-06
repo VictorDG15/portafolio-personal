@@ -1,0 +1,44 @@
+<section id="about" class="section">
+    <div class="container">
+        <h2 class="section-title aos-hidden">Quién <span>soy</span></h2>
+        <div class="section-divider aos-hidden"></div>
+
+        <div class="about-grid">
+            <!-- Text block -->
+            <div class="about-text aos-hidden">
+                <p>{{ personal.about }}</p>
+
+                <div class="about-highlights">
+                    <div class="highlight" *ngFor="let h of highlights">
+                        <i class="fa" [class]="h.icon" style="color:var(--accent)"></i>
+                        <div>
+                            <strong>{{ h.label }}</strong>
+                            <span>{{ h.value }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-actions">
+                    <!-- <a href="mailto:victoryorddiazgonzales@gmail.com" class="btn-primary">
+                        <i class="fa fa-envelope"></i> Contáctame
+                    </a> -->
+                    <a href="https://linkedin.com/in/victor-yordi-diaz-gonzales-7b6841273" target="_blank"
+                        class="btn-outline">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                </div>
+            </div>
+
+            <!-- Info cards -->
+            <div class="about-cards">
+                <div class="value-card glass-card aos-hidden" *ngFor="let card of valueCards; let i = index"
+                    [style.animation-delay]="i * 0.1 + 's'">
+                    <div class="value-img-wrap">
+                        <img [src]="card.img" [alt]="card.title" />
+                    </div>
+                    <h4>{{ card.title }}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

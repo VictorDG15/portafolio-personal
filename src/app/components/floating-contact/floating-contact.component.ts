@@ -17,9 +17,9 @@ export class FloatingContactComponent implements OnInit, OnDestroy {
   readonly emailLink =
     'mailto:victoryorddiazgonzales@gmail.com?subject=Proyecto%20desde%20Portafolio&body=Hola%20V%C3%ADctor%2C%20me%20gustar%C3%ADa%20contactarte%20sobre...';
 
-  private readonly SWITCH_INTERVAL = 8_000;
+  private readonly SWITCH_INTERVAL = 16_000;
 
-  private readonly TOOLTIP_DURATION = 4_000;
+  private readonly TOOLTIP_DURATION = 10_000;
 
   private readonly INITIAL_DELAY = 2_000;
 

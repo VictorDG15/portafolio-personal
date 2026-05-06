@@ -23,12 +23,12 @@ export class LanguageService {
                 EDUCATION: 'Educación',
                 CONTACT: 'Contacto',
                 DOWNLOAD_CV: 'Descargar CV',
-                HIRE_ME: 'Contrátame'
+                HIRE_ME: 'Contáctame'
             },
             HERO: {
                 HI: 'Hola, soy',
                 ROLE: 'Desarrollador Full Stack',
-                DESC: 'Especializado en construir aplicaciones web excepcionales y escalables, combinando diseño moderno con un rendimiento robusto.',
+                DESC: 'Especializado en construir aplicaciones web y móviles excepcionales y escalables, combinando diseño moderno con un rendimiento robusto.',
                 PROJECTS_BTN: 'Ver Proyectos',
                 CONTACT_BTN: 'Contactar'
             },

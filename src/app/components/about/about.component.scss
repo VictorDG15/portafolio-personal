@@ -55,50 +55,55 @@
   flex-wrap: wrap;
 }
 
-/* Info cards */
+/* Cards */
 .about-cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
 
-.info-card {
-  padding: 20px;
+.value-card {
   display: flex;
-  align-items: flex-start;
-  gap: 14px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0;
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease;
 
-  .card-icon {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--accent-dim);
-    border-radius: var(--radius-sm);
-    flex-shrink: 0;
+  &:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
 
-    i {
-      color: var(--accent);
-      font-size: 1rem;
+    img {
+      transform: scale(1.05);
     }
-  }
-
-  h4 {
-    font-family: var(--font-display);
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 4px;
-  }
-
-  p {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    line-height: 1.4;
   }
 }
 
+.value-img-wrap {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+    display: block;
+  }
+}
+
+.value-card h4 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  padding: 14px 12px;
+}
+
+/* Responsive */
 @media (max-width: 900px) {
   .about-grid {
     grid-template-columns: 1fr;
@@ -108,16 +113,18 @@
 
 @media (max-width: 600px) {
   .about-cards {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .value-card h4 {
+    font-size: 0.78rem;
+    padding: 10px 8px;
   }
 
   .about-actions {
     flex-direction: column;
     align-items: flex-start;
-  }
-
-  .info-card {
-    padding: 16px;
   }
 
   .highlight {

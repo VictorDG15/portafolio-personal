@@ -10,6 +10,7 @@ import { LanguageService } from '../../services/language.service';
 export class NavbarComponent implements OnInit {
   isScrolled = false;
   isMenuOpen = false;
+  imageError = false;
 
   constructor(
     public themeService: ThemeService,
@@ -19,13 +20,13 @@ export class NavbarComponent implements OnInit {
   get navLinks() {
     const t = this.langService.t['NAVBAR'];
     return [
-      { label: t.INICIO, href: '#hero' },
-      { label: t.ABOUT, href: '#about' },
-      { label: t.EXPERIENCE, href: '#experience' },
-      { label: t.SKILLS, href: '#skills' },
-      { label: t.PROJECTS, href: '#projects' },
-      { label: t.EDUCATION, href: '#education' },
-      { label: t.CONTACT, href: '#contact' },
+      { label: t.INICIO, href: '#hero', icon: 'fa-home' },
+      { label: t.ABOUT, href: '#about', icon: 'fa-user' },
+      { label: t.EXPERIENCE, href: '#experience', icon: 'fa-briefcase' },
+      { label: t.SKILLS, href: '#skills', icon: 'fa-code' },
+      { label: t.PROJECTS, href: '#projects', icon: 'fa-folder-open' },
+      { label: t.EDUCATION, href: '#education', icon: 'fa-graduation-cap' },
+      { label: t.CONTACT, href: '#contact', icon: 'fa-envelope' },
     ];
   }
 

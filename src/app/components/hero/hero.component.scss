@@ -20,7 +20,7 @@
 .blob-1 {
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(12, 93, 109, 0.08) 0%, transparent 70%);
   top: -100px;
   left: -200px;
   animation-delay: 0s;
@@ -192,7 +192,7 @@
 
 /* Tagline */
 .hero-desc {
-  font-size: 1.15rem;
+  font-size: 18px !important;
   color: var(--text-secondary);
   line-height: 1.8;
   max-width: 600px;
@@ -485,7 +485,7 @@
 @media (max-width: 900px) {
   .container {
     flex-direction: column-reverse;
-    gap: 40px;
+    gap: 10px;
     text-align: center;
   }
 
@@ -533,7 +533,7 @@
 
 @media (max-width: 480px) {
   .hero {
-    padding: 100px 0 60px;
+    padding: 70px 0 40px;
   }
 
   .hero-visual {
@@ -560,6 +560,7 @@
 
   .hero-actions {
     flex-direction: column;
+    margin-bottom: 24px;
     width: 100%;
   }
 

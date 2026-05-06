@@ -12,6 +12,9 @@ export class ProjectsComponent {
   projects: Project[] = this.portfolioService.getProjects();
   activeIndex = 0;
   filter = 'all';
+  videoDialog = false;
+  selectedVideo: string | null = null;
+  selectedProject: Project | null = null;
 
   filters = ['all', 'Backend', 'FullStack', 'Mobile', 'Analytics'];
 
@@ -45,4 +48,38 @@ export class ProjectsComponent {
   getBadgeColor(badge?: string): string {
     return this.badgeColors[badge ?? ''] ?? '#00d4ff';
   }
+
+  openVideo(project: Project): void {
+    if (project.demoType !== 'video' || !project.demoUrl) return;
+
+    this.selectedProject = project;
+    this.selectedVideo = project.demoUrl;
+    this.videoDialog = true;
+  }
+
+  closeVideo(): void {
+    this.videoDialog = false;
+    this.selectedVideo = null;
+    this.selectedProject = null;
+  }
+
+  playPreview(event: Event): void {
+    const video = this.getPreviewVideo(event);
+
+    video?.play().catch(() => undefined);
+  }
+
+  stopPreview(event: Event): void {
+    const video = this.getPreviewVideo(event);
+
+    if (!video) return;
+
+    video.pause();
+    video.currentTime = 0;
+  }
+
+  private getPreviewVideo(event: Event): HTMLVideoElement | null {
+    return (event.currentTarget as HTMLElement).querySelector('video');
+  }
+
 }

@@ -2,22 +2,27 @@
   <div class="nav-container">
 
     <a class="nav-logo" href="#hero" (click)="scrollTo($event, '#hero')">
-      <span class="logo-bracket">&lt;</span>
-      <span class="logo-name">YD</span>
-      <span class="logo-bracket">/&gt;</span>
+      <ng-container *ngIf="isScrolled; else codeLogo">
+        <img src="assets/me_profile.jpeg" pTooltip="Yordi DEV" class="logo-img" (error)="imageError = true"
+          *ngIf="!imageError">
+        <div class="logo-fallback" *ngIf="imageError">YD</div>
+      </ng-container>
+      <ng-template #codeLogo>
+        <span class="logo-bracket">&lt;</span>
+        <span class="logo-name">YD</span>
+        <span class="logo-bracket">/&gt;</span>
+      </ng-template>
     </a>
 
     <ul class="nav-links">
-      <li *ngFor="let link of navLinks; let i = index">
+      <li *ngFor="let link of navLinks">
         <a [href]="link.href" (click)="scrollTo($event, link.href)" class="nav-link">
-          <!-- <span class="link-index">0{{i + 1}}.</span> -->
           {{ link.label }}
         </a>
       </li>
     </ul>
 
     <div class="nav-actions">
-      <!-- Theme/Lang Toggles -->
       <button class="nav-icon-btn" (click)="themeService.toggleTheme()" title="Cambiar Tema">
         <i class="fa" [ngClass]="themeService.isLight ? 'fa-moon' : 'fa-sun'"></i>
       </button>
@@ -25,7 +30,11 @@
         {{ langService.currentLang === 'es' ? 'EN' : 'ES' }}
       </button>
 
-      <!-- Contact CTA -->
+      <!-- <a href="assets/cv/cv-yordi.pdf" target="_blank" class="nav-cta cv-btn">
+        <i class="fa fa-download"></i>
+        {{ langService.t['NAVBAR']['DOWNLOAD_CV'] }}
+      </a> -->
+
       <a href="mailto:victoryorddiazgonzales@gmail.com" class="nav-cta">
         <i class="fa fa-envelope"></i>
         {{ langService.t['NAVBAR']['HIRE_ME'] }}
@@ -40,10 +49,26 @@
   </div>
 
   <div class="mobile-menu" [class.open]="isMenuOpen">
+    <button class="mobile-close" (click)="toggleMenu()">
+      <i class="fa fa-times"></i>
+    </button>
+    <div class="mobile-header">
+      <img src="assets/me_profile.jpeg" (error)="imageError = true" *ngIf="!imageError">
+
+      <div class="mobile-user-info" *ngIf="!imageError">
+        <span class="name">Yordi</span>
+        <span class="role">Developer</span>
+      </div>
+
+      <div class="mobile-avatar-fallback" *ngIf="imageError">
+        YD
+      </div>
+    </div>
     <ul>
-      <li *ngFor="let link of navLinks; let i = index">
+      <li *ngFor="let link of navLinks">
         <a [href]="link.href" (click)="scrollTo($event, link.href)">
-          <span class="link-index">0{{i + 1}}.</span> {{ link.label }}
+          <i class="fa" [ngClass]="link.icon"></i>
+          {{ link.label }}
         </a>
       </li>
     </ul>
@@ -58,15 +83,16 @@
         </button>
       </div>
 
-      <a href="assets/cv/cv-yordi.pdf" target="_blank" class="btn-outline"
-        style="width:100%;justify-content:center;margin-top:16px;">
-        <i class="fa fa-download"></i> {{ langService.t['NAVBAR']['DOWNLOAD_CV'] }}
+      <a href="assets/cv/cv-yordi.pdf" target="_blank" class="mobile-btn mobile-btn--outline">
+        <i class="fa fa-download"></i>
+        {{ langService.t['NAVBAR']['DOWNLOAD_CV'] }}
       </a>
 
-      <a href="mailto:victoryorddiazgonzales@gmail.com" class="btn-primary"
-        style="width:100%;justify-content:center;margin-top:16px;">
-        <i class="fa fa-envelope"></i> {{ langService.t['NAVBAR']['HIRE_ME'] }}
+      <a href="mailto:victoryorddiazgonzales@gmail.com" class="mobile-btn mobile-btn--primary">
+        <i class="fa fa-envelope"></i>
+        {{ langService.t['NAVBAR']['HIRE_ME'] }}
       </a>
     </div>
   </div>
+
 </nav>

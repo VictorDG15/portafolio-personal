@@ -6,32 +6,43 @@
     <div class="skills-grid">
       <div class="skill-category glass-card aos-hidden" *ngFor="let cat of skillCategories; let ci = index"
         [style.animation-delay]="ci * 0.15 + 's'">
+
         <div class="cat-header">
           <div class="cat-icon">
-            <i class="fa" [class]="cat.icon"></i>
+            <i class="fa" [ngClass]="cat.icon"></i>
           </div>
           <h3>{{ cat.category }}</h3>
+          <span class="level-badge" [ngClass]="'level-' + ci">
+            {{ catLevel(ci) }}
+          </span>
         </div>
 
-        <div class="skill-list">
-          <div class="skill-item" *ngFor="let skill of cat.items; let si = index">
-            <div class="skill-info">
-              <span class="skill-name">{{ skill.name }}</span>
-              <span class="skill-percent">{{ getLevel(skill.name) }}%</span>
-            </div>
-            <div class="skill-bar">
-              <div class="skill-fill" [style.width.%]="getLevel(skill.name)" [style.transition-delay]="si * 0.08 + 's'">
-              </div>
-            </div>
+        <div class="pills">
+          <span class="skill-pill" *ngFor="let skill of cat.items">
+            <i [ngClass]="skill.icon"></i>
+            {{ skill.name }}
+          </span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Marquee -->
+    <div class="marquee-section aos-hidden">
+      <p class="marquee-label">también trabajo con</p>
+      <div class="marquee-wrap">
+        <div class="fade-left"></div>
+        <div class="fade-right"></div>
+        <div class="marquee-track">
+          <div class="marquee-inner" #marqueeInner>
+            <span class="mbadge" *ngFor="let b of extraBadges">{{ b }}</span>
+          </div>
+          <div class="marquee-inner">
+            <span class="mbadge" *ngFor="let b of extraBadges">{{ b }}</span>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="quick-badges aos-hidden">
-      <div class="badges-row">
-        <span class="tech-badge" *ngFor="let b of extraBadges">{{ b }}</span>
-      </div>
-    </div>
   </div>
 </section>

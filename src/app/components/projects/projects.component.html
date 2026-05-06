@@ -16,22 +16,58 @@
         <ng-template let-project pTemplate="item">
           <div class="project-card glass-card">
             <!-- Image -->
-            <div class="project-image">
-              <img [src]="project.image" [alt]="project.name" loading="lazy">
+            <div class="project-image"
+              [class.video-project]="project.demoType === 'video'"
+              (mouseenter)="project.demoType === 'video' && playPreview($event)"
+              (mouseleave)="project.demoType === 'video' && stopPreview($event)"
+              (click)="project.demoType === 'video' && openVideo(project)">
+              <img [src]="project.image"
+                [alt]="project.name"
+                loading="lazy">
+
+              <video *ngIf="project.demoType === 'video' && project.demoUrl"
+                class="project-preview-video"
+                [src]="project.demoUrl"
+                muted
+                loop
+                playsinline
+                preload="metadata">
+              </video>
+
+              <span *ngIf="project.demoType === 'video'" class="project-play-badge">
+                <i class="fa fa-play"></i>
+              </span>
+
               <div class="project-overlay">
                 <div class="overlay-links">
-                  <a [href]="project.demoUrl" class="overlay-btn" target="_blank">
-                    <i class="fa fa-external-link-alt"></i> {{ langService.t['PROJECTS']['DEMO'] }}
+
+                  <a *ngIf="project.demoType !== 'video'"
+                    [href]="project.demoUrl"
+                    class="overlay-btn"
+                    target="_blank">
+                    <i class="fa fa-external-link-alt"></i>
+                    {{ langService.t['PROJECTS']['DEMO'] }}
                   </a>
-                  <a [href]="project.githubUrl" class="overlay-btn outline" target="_blank">
-                    <i class="fab fa-github"></i> {{ langService.t['PROJECTS']['CODE'] }}
+
+                  <button *ngIf="project.demoType === 'video'"
+                    type="button"
+                    class="overlay-btn"
+                    (click)="openVideo(project); $event.stopPropagation()">
+                    <i class="fa fa-play"></i>
+                    Demo
+                  </button>
+
+                  <a [href]="project.githubUrl"
+                    class="overlay-btn outline"
+                    target="_blank"
+                    (click)="$event.stopPropagation()">
+                    <i class="fab fa-github"></i>
+                    {{ langService.t['PROJECTS']['CODE'] }}
                   </a>
+
                 </div>
               </div>
-              <span class="project-badge" [style.background]="getBadgeColor(project.badge) + '20'"
-                [style.color]="getBadgeColor(project.badge)">
-                {{ project.badge }}
-              </span>
+
             </div>
 
             <!-- Content -->
@@ -46,8 +82,18 @@
               </div>
 
               <div class="project-links">
-                <a [href]="project.demoUrl" class="link-btn" target="_blank">
-                  <i class="fa fa-external-link-alt"></i> {{ langService.t['PROJECTS']['DEMO'] }}
+                <button *ngIf="project.demoType === 'video'"
+                  type="button"
+                  (click)="openVideo(project)"
+                  class="link-btn">
+                  <i class="fa fa-play"></i> Demo
+                </button>
+
+                <a *ngIf="project.demoType !== 'video'"
+                  [href]="project.demoUrl"
+                  class="link-btn"
+                  target="_blank">
+                  <i class="fa fa-external-link-alt"></i> Demo
                 </a>
                 <a [href]="project.githubUrl" class="link-btn ghost" target="_blank">
                   <i class="fab fa-github"></i> {{ langService.t['PROJECTS']['CODE'] }}
@@ -67,3 +113,42 @@
     </div>
   </div>
 </section>
+
+<p-dialog [(visible)]="videoDialog"
+          [modal]="true"
+          [style]="{width: 'min(94vw, 980px)'}"
+          [contentStyle]="{padding: '0', overflow: 'hidden'}"
+          styleClass="video-dialog"
+          [closable]="true"
+          [dismissableMask]="true"
+          (onHide)="closeVideo()">
+
+  <ng-template pTemplate="content">
+    <div class="video-modal" *ngIf="selectedProject && selectedVideo">
+      <div class="video-frame">
+        <video [src]="selectedVideo"
+          controls
+          autoplay
+          playsinline>
+        </video>
+      </div>
+
+      <div class="video-info">
+        <div>
+          <span class="video-kicker">{{ selectedProject.badge }}</span>
+          <h3>{{ selectedProject.name }}</h3>
+          <p>{{ selectedProject.longDescription }}</p>
+        </div>
+
+        <a *ngIf="selectedProject.githubUrl"
+          [href]="selectedProject.githubUrl"
+          class="link-btn ghost"
+          target="_blank">
+          <i class="fab fa-github"></i>
+          {{ langService.t['PROJECTS']['CODE'] }}
+        </a>
+      </div>
+    </div>
+  </ng-template>
+
+</p-dialog>

@@ -4,8 +4,8 @@
 
 .floating-contact-container {
     position: fixed;
-    bottom: 45px;
-    right: 45px;
+    bottom: 60px;
+    right: 60px;
     z-index: 999;
     display: flex;
     align-items: center;
@@ -16,9 +16,9 @@
     display: flex;
     align-items: center;
     gap: 8px;
-
-    background: var(--bg-tertiary, #1e1e2e);
-    color: var(--text-primary, #e0e0e0);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
     padding: 10px 16px 10px 12px;
     border-radius: 12px;
     font-size: 0.875rem;
@@ -54,7 +54,7 @@
         transform: translateY(-50%);
         border-width: 6px 0 6px 6px;
         border-style: solid;
-        border-color: transparent transparent transparent var(--bg-tertiary, #1e1e2e);
+        border-color: transparent transparent transparent var(--bg-card);
     }
 
     &::before {
@@ -65,7 +65,7 @@
         transform: translateY(-50%);
         border-width: 7px 0 7px 7px;
         border-style: solid;
-        border-color: transparent transparent transparent var(--border-color, rgba(255, 255, 255, 0.08));
+        border-color: transparent transparent transparent var(--border);
         z-index: -1;
     }
 }

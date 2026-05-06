@@ -40,11 +40,11 @@
 
       </div>
 
-      <div class="stack-pills">
+      <!-- <div class="stack-pills">
         <span class="pill" *ngFor="let tech of ['Java', 'Spring Boot', 'Angular', 'Flutter', 'SQL Server']">
           {{ tech }}
         </span>
-      </div>
+      </div> -->
 
       <div class="hero-stats">
         <div class="stat" *ngFor="let stat of stats">
@@ -58,16 +58,15 @@
       <div class="avatar-ring outer"></div>
       <div class="avatar-ring middle"></div>
       <div class="avatar-container">
-        <div class="avatar-container">
-          <img *ngIf="!imageError" src="assets/me_profile.jpeg" alt="profile" (error)="onImageError()"
-            class="avatar-img" />
+        <img *ngIf="!imageError" src="assets/me_profile.jpeg" alt="profile" (error)="onImageError()"
+          class="avatar-img" />
 
-          <div *ngIf="imageError" class="avatar-placeholder">
-            <i class="fa fa-user-code"></i>
-            <span>{{ getInitials() }}</span>
-          </div>
+        <div *ngIf="imageError" class="avatar-placeholder">
+          <i class="fa fa-user-code"></i>
+          <span>{{ getInitials() }}</span>
         </div>
       </div>
+
       <div class="float-icon fi-1"><i class="fab fa-java"></i></div>
       <div class="float-icon fi-2"><i class="fab fa-angular"></i></div>
       <div class="float-icon fi-3"><i class="fab fa-docker"></i></div>

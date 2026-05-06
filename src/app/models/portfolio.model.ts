@@ -27,6 +27,7 @@ export interface Project {
   technologies: string[];
   image: string;
   demoUrl?: string;
+  demoType?: 'video' | 'link'; 
   githubUrl?: string;
   featured: boolean;
   badge?: string;
