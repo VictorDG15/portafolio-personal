@@ -11,64 +11,31 @@
 
     <!-- Projects Carousel -->
     <div class="projects-carousel-container aos-hidden">
-      <p-carousel [value]="filteredProjects" [numVisible]="3" [numScroll]="1" [circular]="true"
+      <p-carousel #carousel [value]="filteredProjects" [numVisible]="3" [numScroll]="1" [circular]="true"
         [autoplayInterval]="4000" [showIndicators]="true" [responsiveOptions]="responsiveOptions">
         <ng-template let-project pTemplate="item">
           <div class="project-card glass-card">
             <!-- Image -->
-            <div class="project-image"
-              [class.video-project]="project.demoType === 'video'"
-              (mouseenter)="project.demoType === 'video' && playPreview($event)"
-              (mouseleave)="project.demoType === 'video' && stopPreview($event)"
-              (click)="project.demoType === 'video' && openVideo(project)">
-              <img [src]="project.image"
-                [alt]="project.name"
-                loading="lazy">
+             <div class="project-image"
+                  [class.is-hovered]="hoveredProject === project && project.demoUrl"
+                  (mouseenter)="handleHover(project, true, $event)"
+                  (mouseleave)="handleHover(project, false, $event)">
 
-              <video *ngIf="project.demoType === 'video' && project.demoUrl"
-                class="project-preview-video"
-                [src]="project.demoUrl"
-                muted
-                loop
-                playsinline
-                preload="metadata">
-              </video>
+                  <img [src]="project.image"
+                    [alt]="project.name"
+                    loading="lazy">
 
-              <span *ngIf="project.demoType === 'video'" class="project-play-badge">
-                <i class="fa fa-play"></i>
-              </span>
-
-              <div class="project-overlay">
-                <div class="overlay-links">
-
-                  <a *ngIf="project.demoType !== 'video'"
-                    [href]="project.demoUrl"
-                    class="overlay-btn"
-                    target="_blank">
-                    <i class="fa fa-external-link-alt"></i>
-                    {{ langService.t['PROJECTS']['DEMO'] }}
-                  </a>
-
-                  <button *ngIf="project.demoType === 'video'"
-                    type="button"
-                    class="overlay-btn"
-                    (click)="openVideo(project); $event.stopPropagation()">
-                    <i class="fa fa-play"></i>
-                    Demo
-                  </button>
-
-                  <a [href]="project.githubUrl"
-                    class="overlay-btn outline"
-                    target="_blank"
-                    (click)="$event.stopPropagation()">
-                    <i class="fab fa-github"></i>
-                    {{ langService.t['PROJECTS']['CODE'] }}
-                  </a>
+                  <video
+                    *ngIf="project.demoType === 'video' && project.demoUrl && project.demoUrl !== '#'"
+                    class="project-preview-video"
+                    [src]="project.demoUrl"
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata">
+                  </video>
 
                 </div>
-              </div>
-
-            </div>
 
             <!-- Content -->
             <div class="project-content">

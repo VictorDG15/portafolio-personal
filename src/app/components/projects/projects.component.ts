@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { Carousel } from 'primeng/carousel';
 import { PortfolioService } from '../../services/portfolio.service';
 import { Project } from '../../models/portfolio.model';
 import { LanguageService } from '../../services/language.service';
@@ -15,8 +16,9 @@ export class ProjectsComponent {
   videoDialog = false;
   selectedVideo: string | null = null;
   selectedProject: Project | null = null;
-
+  @ViewChild('carousel') carouselRef!: Carousel;
   filters = ['all', 'Backend', 'FullStack', 'Mobile', 'Analytics'];
+  hoveredProject: Project | null = null;
 
   get filteredProjects(): Project[] {
     if (this.filter === 'all') return this.projects;
@@ -63,14 +65,42 @@ export class ProjectsComponent {
     this.selectedProject = null;
   }
 
-  playPreview(event: Event): void {
-    const video = this.getPreviewVideo(event);
+  handleHover(project: Project, isEnter: boolean, event: Event): void {
+    const container = event.currentTarget as HTMLElement;
+    const video = container.querySelector('video') as HTMLVideoElement;
+    const hasVideo = project.demoType === 'video' && !!project.demoUrl && project.demoUrl !== '#';
 
-    video?.play().catch(() => undefined);
+    if (isEnter) {
+      // Detener carrusel manipulando el intervalo interno de PrimeNG
+      if (this.carouselRef) {
+        this.carouselRef.autoplayInterval = 0;
+        (this.carouselRef as any).stopAutoplay?.();
+        clearInterval((this.carouselRef as any).interval);
+        (this.carouselRef as any).interval = null;
+      }
+
+      if (hasVideo && video) {
+        this.hoveredProject = project;
+        video.currentTime = 0;
+        video.play().catch(() => {});
+      }
+    } else {
+      // Reanudar carrusel
+      if (this.carouselRef) {
+        this.carouselRef.autoplayInterval = 4000;
+        (this.carouselRef as any).startAutoplay?.();
+      }
+
+      if (hasVideo && video) {
+        this.hoveredProject = null;
+        video.pause();
+        video.currentTime = 0;
+      }
+    }
   }
 
   stopPreview(event: Event): void {
-    const video = this.getPreviewVideo(event);
+    const video = (event.currentTarget as HTMLElement).querySelector('video') as HTMLVideoElement;
 
     if (!video) return;
 
