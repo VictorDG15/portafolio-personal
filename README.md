@@ -1,4 +1,4 @@
-# 🚀 Yordi Portfolio — Angular 16
+# Yordi Portfolio — Angular 16
 
 Portafolio profesional de **Víctor Yordi Díaz Gonzales** — Full Stack Developer.
 
@@ -10,7 +10,7 @@ Portafolio profesional de **Víctor Yordi Díaz Gonzales** — Full Stack Develo
 - **Font Awesome 6** para iconografía
 - **Google Fonts**: Syne + Space Mono + Inter
 
-## 🎨 Características de diseño
+## Características de diseño
 
 - 🌑 Dark theme (negro profundo + cyan eléctrico)
 - 💎 Glassmorphism cards con backdrop-filter
@@ -86,7 +86,7 @@ src/
 
 ---
 
-## 🔧 Personalización
+## Personalización
 
 ### Cambiar datos personales
 Edita `src/app/services/portfolio.service.ts` y modifica:
@@ -106,13 +106,6 @@ Edita las variables en `src/styles.scss`:
   --bg-primary:  #040a14;  /* Fondo principal */
 }
 ```
-
-### Agregar foto real
-En `hero.component.html`, reemplaza el bloque `.avatar-placeholder` por:
-```html
-<img src="assets/tu-foto.jpg" alt="Víctor Yordi" class="avatar-img">
-```
-Y agrega el estilo correspondiente.
 
 ---
 
