@@ -27,7 +27,7 @@ export class PortfolioService {
     return [
       {
         role: 'Analista Programador — Backend & Full Stack',
-        company: 'Grupo Coril',
+        company: '3420 Wealth Management',
         period: 'Julio 2025 – Actualidad',
         type: 'fullstack',
         description: [
@@ -56,17 +56,6 @@ export class PortfolioService {
           'Colaboré en equipos bajo metodología Scrum usando Figma para prototipos de diseño.',
         ],
         technologies: ['Java 17', 'Spring Boot', 'Angular', 'Flutter', 'SQL Server', 'AS400', 'Git', 'Maven', 'Postman', 'Scrum'],
-      },
-      {
-        role: 'Web Development Intern',
-        company: 'Foodpack',
-        period: 'Mayo 2022 – Septiembre 2022',
-        type: 'intern',
-        description: [
-          'Participé en el desarrollo de aplicaciones web con Angular integrando frontend y backend.',
-          'Contribuí en la creación de tablas, procedimientos almacenados y funciones en MySQL.',
-        ],
-        technologies: ['Angular', 'MySQL', 'HTML5', 'CSS3'],
       }
     ];
   }
@@ -84,6 +73,8 @@ export class PortfolioService {
           { name: 'C# .NET', level: 65 },
           { name: 'Python', level: 60 },
           { name: 'C++', level: 55 },
+          { name: 'Node.js', level: 55 },
+          { name: 'Express.js/NestJS', level: 55 },
         ],
       },
       {
@@ -125,12 +116,39 @@ export class PortfolioService {
   getProjects(): Project[] {
     return [
       {
+        id: 5,
+        name: 'YorkBank',
+        description: 'App bancaria digital fullstack con Flutter y Spring Boot',
+        longDescription:
+          'Aplicación bancaria móvil desarrollada como proyecto fullstack para portafolio profesional. Incluye autenticación segura, validación de datos, dashboard financiero, gestión de cuentas, tarjetas, transferencias, pagos, préstamos, inversiones, diseño premium con identidad propia y arquitectura limpia. El backend está construido con Spring Boot, PostgreSQL, JWT, Swagger, Docker y buenas prácticas enterprise; la app móvil usa Flutter con arquitectura modular, consumo de APIs REST, manejo seguro de sesión y diseño responsive para Android/iOS.',
+        technologies: [
+          'Flutter',
+          'Dart',
+          'Riverpod',
+          'GoRouter',
+          'Dio',
+          'Spring Boot',
+          'Java 21',
+          'PostgreSQL',
+          'JWT',
+          'Swagger',
+          'Docker',
+          'Redis',
+          'Kafka'
+        ],
+        image: 'assets/portada/yorbank.png',
+        demoUrl: 'assets/videos/projects/demo.mp4',
+        githubUrl: 'https://github.com/VictorDG15/yorbank-front.git',
+        featured: true,
+        badge: 'FinTech',
+      },
+      {
         id: 1,
         name: 'Digital atm backend',
         description: 'Backend para cajero digital / neobank API, diseñado para mostrar en portafolio',
         longDescription: 'Este proyecto implementa un servicio REST seguro con gestión de usuarios, cuentas, tarjetas, transacciones y auditoría',
         technologies: ['Java', 'Spring Boot', 'Spring Batch', 'SQL Server', 'Docker', 'REST APIs'],
-                image: 'assets/portada/atm.png',
+        image: 'assets/portada/atm.png',
         demoUrl: '#',
         githubUrl: 'https://github.com/VictorDG15/FinPay-.git',
         featured: true,
@@ -188,18 +206,6 @@ export class PortfolioService {
         badge: 'FullStack',
       },
       {
-        id: 5,
-        name: 'DataVault Analytics',
-        description: 'Sistema de reportería y análisis de datos empresariales',
-        longDescription: 'Plataforma de business intelligence con dashboards interactivos en Angular. Integración con múltiples fuentes de datos (SQL Server, MySQL), generación de reportes en PDF/Excel y visualizaciones con Chart.js.',
-        technologies: ['Angular', 'Spring Boot', 'SQL Server', 'Chart.js', 'JasperReports', 'Maven'],
-        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop',
-        demoUrl: '#',
-        githubUrl: 'https://github.com/victoryordi',
-        featured: false,
-        badge: 'Analytics',
-      },
-      {
         id: 6,
         name: 'TaskFlow API',
         description: 'API REST para gestión de proyectos y tareas',
@@ -219,7 +225,7 @@ export class PortfolioService {
       {
         institution: 'Universidad Peruana de Ciencias Aplicadas (UPC)',
         degree: 'Ingeniería de Software',
-        period: 'Marzo 2018 – Noviembre 2022',
+        period: 'Marzo 2021 – Noviembre 2025',
         honors: 'Alumno destacado en el quinto superior',
         icon: 'fa-graduation-cap',
       },
